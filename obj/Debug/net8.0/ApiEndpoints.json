@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "webApiClass.Controllers.AuthController",
+    "Method": "CreateNewUser",
+    "RelativePath": "api/Auth/CreateNewUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerDTO",
+        "Type": "webApiClass.DTO.RegisterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webApiClass.Controllers.AuthController",
+    "Method": "LogInUser",
+    "RelativePath": "api/Auth/LogInUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "webApiClass.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "webApiClass.Controllers.StudentController",
     "Method": "CreateStudent",
     "RelativePath": "api/Student/CreateStudents",
@@ -9,7 +41,7 @@
     "Parameters": [
       {
         "Name": "student",
-        "Type": "webApiClass.model.Student",
+        "Type": "webApiClass.DTO.StudentDTO",
         "IsRequired": true
       }
     ],
@@ -90,6 +122,22 @@
         "Name": "update",
         "Type": "webApiClass.model.Student",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webApiClass.Controllers.VerifyNumberController",
+    "Method": "GetNumberDetails",
+    "RelativePath": "api/VerifyNumber/GetNumberDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "number",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

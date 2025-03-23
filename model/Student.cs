@@ -15,10 +15,5 @@ namespace webApiClass.model
         public string Gender { get; set; }
         [StringLength(15)]
         public string Stack { get; set; }
-
-        internal void All()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -14,20 +14,22 @@ namespace webApiClass.Services
         private readonly StudentDBcontext studentDBContext;
         private readonly IMapper mapper;
 
-        public StudentService(StudentDBcontext studentDBContext)
+        public StudentService(StudentDBcontext studentDBContext, IMapper mapper)
         {
             this.studentDBContext = studentDBContext;
+            this.mapper = mapper;
         }
 
-        public void CreateStudent(Student student)
+        public void CreateStudent(StudentDTO studentDto)
         {
-
-            if (student ==null)
+            var student = mapper.Map<Student>(studentDto);
+            
+            if (studentDto ==null)
             {
                 throw new Exception("Student input cannot be empty");
             }
             var students = studentDBContext.Students
-                .FirstOrDefault(s => s.FirstName == student.FirstName && s.LastName == student.LastName && s.Stack == student.Stack);
+                .FirstOrDefault(s => s.FirstName == studentDto.FirstName && s.LastName == studentDto.LastName && s.Stack == studentDto.Stack);
             if (students != null)
             {
                 throw new Exception("Student already exist");
@@ -94,6 +96,7 @@ namespace webApiClass.Services
 
         public void UpdateStudentId(int id, Student update)
         {
+           
             var student = studentDBContext.Students.Find(id);
             if (student != null)
             {

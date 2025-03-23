@@ -6,9 +6,6 @@ namespace webApiClass.DTO
 {
     public class StudentDTO
     {
-        [Required]
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -23,7 +20,8 @@ namespace webApiClass.DTO
     {
         public MappingProfile ()
         {
-            CreateMap<Student, StudentDTO>();
+            CreateMap<Student, StudentDTO>().ReverseMap();
+            CreateMap<ApplicationUser, RegisterDTO>().ReverseMap();
         }
     }
 }

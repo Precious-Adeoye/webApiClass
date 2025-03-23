@@ -7,7 +7,7 @@ namespace webApiClass.Iservice
     {
         // Return type and the functionName add parameters if required 
 
-        void CreateStudent(Student student);
+        void CreateStudent(StudentDTO student);
 
         Student GetStudentById(int id);
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webApiClass.Data;
 using webApiClass.DTO;
@@ -9,9 +11,11 @@ namespace webApiClass.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize (AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class StudentController : ControllerBase
     {
         private readonly IStudent studentService;
+        private readonly ILogger<StudentController> logger;
 
         public StudentController(IStudent studentService)
         {
@@ -21,7 +25,7 @@ namespace webApiClass.Controllers
         [HttpPost]
         [Route("CreateStudents")]
 
-        public IActionResult CreateStudent([FromBody]Student student)
+        public IActionResult CreateStudent([FromBody]StudentDTO student)
         {
           try
             {
@@ -30,20 +34,19 @@ namespace webApiClass.Controllers
             }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
-             
-            
-           
+            }    
         }
-
+        [Authorize("User")]
         [HttpGet("GetAllStudent")]
 
         public IActionResult GetAllStudents()
         {
             var students = studentService.GetAllStudents();
+            logger.LogInformation("This is the list of all students:{@students}", students);
             return Ok(students);
         }
 
+        [Authorize("Admin")]
         [HttpGet("GetStudentById")]
 
         public IActionResult GetStudentById(int id) 
